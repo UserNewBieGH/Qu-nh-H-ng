@@ -1,0 +1,5 @@
+# Runtime database & dependencies
+data/
+node_modules/
+*.log
+.DS_Store

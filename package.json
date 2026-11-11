@@ -1,0 +1,18 @@
+{
+  "name": "co-tu-tour-booking",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Giao diện đặt tour Hẻm ẩm thực Cô Tư - Landing Page & Booking Engine",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "test": "node test_runner.js && node test_functional.js && node test_deep_verification.js && node test_server_sync.js"
+  },
+  "keywords": [
+    "co-tu-tour",
+    "saigon-food-tour",
+    "landing-page"
+  ],
+  "author": "",
+  "license": "ISC"
+}

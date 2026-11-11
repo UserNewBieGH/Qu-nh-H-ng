@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="vi" class="h-full">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Đăng Nhập Quản Trị Viên | Tour Hẻm Ẩm Thực Cô Tư Sài Gòn</title>
+
+  <!-- Google Fonts & Material Symbols -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#835500',
+            'primary-container': '#f5a623',
+            'on-primary-container': '#644000',
+            secondary: '#af3019',
+            'secondary-fixed': '#ffdad3',
+            tertiary: '#006c49',
+            'tertiary-fixed': '#6ffbbe',
+            surface: '#fff8f3',
+            'surface-container-low': '#f5f3ef',
+            'surface-container': '#efeeea',
+            'surface-container-high': '#eae8e4',
+            'surface-container-lowest': '#ffffff',
+            'on-surface': '#1b1c1a',
+            'on-surface-variant': '#524534',
+            'outline-variant': '#d7c3ae',
+            error: '#ba1a1a',
+            'error-container': '#ffdad6',
+            'on-error-container': '#410002'
+          },
+          fontFamily: {
+            sans: ['"Be Vietnam Pro"', 'sans-serif'],
+            headline: ['"Bricolage Grotesque"', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body class="h-full bg-gradient-to-br from-surface to-surface-container flex items-center justify-center p-4">
+
+  <div class="w-full max-w-md bg-surface-container-lowest rounded-3xl p-6 sm:p-8 shadow-2xl border border-outline-variant/30 space-y-6">
+    
+    <!-- Header Branding -->
+    <div class="text-center space-y-3">
+      <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-primary-container/20 text-primary border border-primary/30 shadow-inner">
+        <span class="material-symbols-outlined text-3xl">shield_person</span>
+      </div>
+      <div>
+        <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-wider mb-1">
+          <span class="material-symbols-outlined text-[14px]">lock</span>
+          <span>Cổng Quản Trị Nội Bộ</span>
+        </div>
+        <h1 class="font-headline font-extrabold text-2xl text-on-surface">Admin Portal Cô Tư</h1>
+        <p class="text-xs text-on-surface-variant mt-1">Đăng nhập tài khoản quản trị viên để quản lý đơn tour, khách đặt trước và xuất báo cáo hệ thống.</p>
+      </div>
+    </div>
+
+    <!-- Error Alert Box -->
+    <div id="admin-login-error" class="hidden p-3.5 rounded-xl bg-error-container/80 text-on-error-container text-xs flex items-start gap-2.5 border border-error/30">
+      <span class="material-symbols-outlined text-[18px] shrink-0 text-error">error</span>
+      <span id="admin-login-error-msg" class="leading-relaxed"></span>
+    </div>
+
+    <!-- Login Form -->
+    <form id="admin-login-form" class="space-y-4">
+      <div class="space-y-1.5 text-left">
+        <label for="admin-login-identifier" class="text-xs font-bold text-on-surface">Tài khoản Quản Trị / Email</label>
+        <div class="relative">
+          <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">account_circle</span>
+          <input type="text" id="admin-login-identifier" required placeholder="Email hoặc tên đăng nhập quản trị" class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-surface-container text-xs text-on-surface focus:outline-none focus:ring-2 focus:ring-primary border-0 transition-all"/>
+        </div>
+      </div>
+
+      <div class="space-y-1.5 text-left">
+        <label for="admin-login-password" class="text-xs font-bold text-on-surface">Mật khẩu bảo mật</label>
+        <div class="relative">
+          <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">key</span>
+          <input type="password" id="admin-login-password" required placeholder="Nhập mật khẩu quản trị" class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-surface-container text-xs text-on-surface focus:outline-none focus:ring-2 focus:ring-primary border-0 transition-all"/>
+        </div>
+      </div>
+
+      <button type="submit" id="btn-admin-submit" class="btn-tactile w-full py-3 rounded-xl bg-primary text-surface font-headline font-bold text-sm hover:brightness-110 transition-all shadow-md flex items-center justify-center gap-2">
+        <span class="material-symbols-outlined text-[18px]">login</span>
+        <span>Đăng Nhập Bảng Quản Trị</span>
+      </button>
+    </form>
+
+    <!-- Back to Customer Landing Page -->
+    <div class="text-center pt-4 border-t border-outline-variant/30">
+      <a href="index.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-secondary hover:underline">
+        <span class="material-symbols-outlined text-[16px]">arrow_back</span>
+        <span>Quay về Trang Chủ Khách Hàng (index.html)</span>
+      </a>
+    </div>
+
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const errorBox = document.getElementById('admin-login-error');
+      const errorMsg = document.getElementById('admin-login-error-msg');
+      const identInput = document.getElementById('admin-login-identifier');
+      const passInput = document.getElementById('admin-login-password');
+      const form = document.getElementById('admin-login-form');
+
+      // Initialize auth manager
+      if (window.AuthManager) {
+        window.AuthManager.init();
+
+        // If already authenticated as admin, go straight to admin.html
+        if (window.AuthManager.isAdmin()) {
+          window.location.replace('admin.html');
+          return;
+        }
+      }
+
+      // Check for redirect reasons
+      const reason = sessionStorage.getItem('admin_auth_error');
+      if (reason === 'unauthorized_customer') {
+        showError('Tài khoản của bạn là Khách Hàng, không có quyền truy cập Bảng Quản Trị. Vui lòng đăng nhập bằng tài khoản Quản Trị Viên!');
+        sessionStorage.removeItem('admin_auth_error');
+      } else if (reason === 'unauthorized') {
+        showError('Vui lòng đăng nhập với tài khoản Quản Trị Viên để tiếp tục.');
+        sessionStorage.removeItem('admin_auth_error');
+      }
+
+      // Submit form
+      form?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        hideError();
+
+        const identifier = identInput.value.trim();
+        const password = passInput.value.trim();
+
+        if (!identifier || !password) {
+          showError('Vui lòng nhập đầy đủ tài khoản quản trị và mật khẩu!');
+          return;
+        }
+
+        const submitBtn = form.querySelector('button[type="submit"]');
+        if (submitBtn) submitBtn.disabled = true;
+
+        try {
+          const res = await window.AuthManager.loginAsync(identifier, password, { requiredRole: 'admin' });
+
+          if (!res.success) {
+            showError(res.message);
+            return;
+          }
+
+          // Strict role check: Must be admin!
+          if (res.user.role !== 'admin') {
+            // Logged in as customer -> reject from admin portal
+            window.AuthManager.logout();
+            showError('Từ chối truy cập: Tài khoản ' + res.user.fullName + ' là Khách Hàng, không có quyền Quản Trị Viên. Vui lòng quay lại trang dành cho khách hàng!');
+            return;
+          }
+
+          // Admin login success -> redirect to admin dashboard
+          window.location.replace('admin.html');
+        } finally {
+          if (submitBtn) submitBtn.disabled = false;
+        }
+      });
+
+      function showError(msg) {
+        if (errorBox && errorMsg) {
+          errorMsg.textContent = msg;
+          errorBox.classList.remove('hidden');
+        }
+      }
+
+      function hideError() {
+        if (errorBox) errorBox.classList.add('hidden');
+      }
+    });
+  </script>
+</body>
+</html>
